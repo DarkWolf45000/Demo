@@ -5,23 +5,34 @@ using UnityEngine;
 public class PlayerM : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float speed=5f;
+    public float speed=2.4f;
     private Transform pt;
     private int cantj = 0;
     private Animator anim;
+    private Vector3 vo;
+    private bool isdead=false;
     // Start is called before the first frame update
+
+  /*  private void Awake()
+    {
+        vo = pt.position;
+    }
+    */
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         pt = this.gameObject.GetComponent<Transform>();
         anim = this.gameObject.GetComponent<Animator>();
+        vo = pt.position;
+        //vo = new Vector3(-9.36f, -0.5803899f, -72.12029f);
+       // Debug.Log(this.gameObject.tag);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Vector3 va = pt.position;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !isdead)
         {
             this.lookRight(this.gameObject);
             Vector3 movement = new Vector3(speed, 0f, 0f);
@@ -30,7 +41,7 @@ public class PlayerM : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !isdead)
         {
             this.lookLeft(this.gameObject);
             Vector3 movement = new Vector3(-1 * speed, 0f, 0f);
@@ -39,7 +50,7 @@ public class PlayerM : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && cantj < 1)
+        if (Input.GetKey(KeyCode.W) && (cantj < 1) && !isdead)
         {
             cantj += 1;
             Vector2 v2 = new Vector2(0f, 5f);
@@ -91,6 +102,16 @@ public class PlayerM : MonoBehaviour
             anim.SetBool("Salto", false);
         }
 
+    }
+
+    public Vector3 GetVo()
+    {
+        return this.vo;
+    }
+
+    public void SetDead(bool val)
+    {
+        this.isdead = val;
     }
 
 }
