@@ -37,7 +37,11 @@ public class PlayerM : MonoBehaviour
         {
             this.lookRight(this.gameObject);
             Vector3 movement = new Vector3(speed, 0f, 0f);
-            pt.position += movement * Time.deltaTime * speed;
+            Vector3 temp = pt.position + movement * Time.deltaTime * speed;
+            if (!((temp.x+ +0.399f )> 12.386f))
+            {
+                pt.position += movement * Time.deltaTime * speed;
+            }
             anim.SetBool("Movement",true);
 
         }
@@ -46,12 +50,16 @@ public class PlayerM : MonoBehaviour
         {
             this.lookLeft(this.gameObject);
             Vector3 movement = new Vector3(-1 * speed, 0f, 0f);
-            pt.position += movement * Time.deltaTime * speed;
+            Vector3 temp = pt.position + movement * Time.deltaTime * speed;
+            if (!((temp.x-0.399f)<-11.13f))
+            {
+                pt.position += movement * Time.deltaTime * speed;
+            }
             anim.SetBool("Movement", true);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && (cantj < 1) && !isdead)
+        if (Input.GetKey(KeyCode.W) && (cantj < 1) && !isdead)
         {
             cantj += 1;
             Vector2 v2 = new Vector2(0f, 5f);
@@ -63,6 +71,12 @@ public class PlayerM : MonoBehaviour
         {
             anim.SetBool("Movement", false);
         }
+
+        if (pt.position.y<-6.08f)
+        {
+            pt.position = vo;
+        }
+
     }
 
     private void lookRight(GameObject player)
