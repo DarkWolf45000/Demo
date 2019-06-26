@@ -8,6 +8,9 @@ TagManager:
   - Block
   - Saw
   - Main
+  - Sword
+  - Enemy
+  - WeaponHolder
   layers:
   - Default
   - TransparentFX
@@ -42,11 +45,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Sky
     uniqueID: 3595009903
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Ground
     uniqueID: 2268658811

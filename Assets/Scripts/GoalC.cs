@@ -36,6 +36,18 @@ public class GoalC : MonoBehaviour
             {
                 SceneManager.LoadScene("Nivel 4");
             }
+            else if (SceneManager.GetActiveScene().name.Equals("Nivel 4"))
+            {
+                SceneManager.LoadScene("Nivel 5");
+            }
+            else if (SceneManager.GetActiveScene().name.Equals("Nivel 5"))
+            {
+                SceneManager.LoadScene("Nivel 6");
+            }
+            else if (SceneManager.GetActiveScene().name.Equals("Nivel 6"))
+            {
+                SceneManager.LoadScene("Nivel 7");
+            }
 
         }
             

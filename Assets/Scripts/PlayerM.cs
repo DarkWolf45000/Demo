@@ -11,6 +11,7 @@ public class PlayerM : MonoBehaviour
     private Animator anim;
     private Vector3 vo;
     private bool isdead=false;
+    private bool lookright = false;
     // Start is called before the first frame update
 
   /*  private void Awake()
@@ -50,7 +51,7 @@ public class PlayerM : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.W) && (cantj < 1) && !isdead)
+        if (Input.GetKeyDown(KeyCode.W) && (cantj < 1) && !isdead)
         {
             cantj += 1;
             Vector2 v2 = new Vector2(0f, 5f);
@@ -66,12 +67,24 @@ public class PlayerM : MonoBehaviour
 
     private void lookRight(GameObject player)
     {
+        this.lookright = true;
         for (int i = 0; i < player.transform.childCount; i++)
         {
             Transform son = player.transform.GetChild(i);
             SpriteRenderer sr = son.GetComponent<SpriteRenderer>();
-            sr.flipX = true;
-            
+            if (son.tag=="WeaponHolder") {
+                    Quaternion rotz = son.transform.rotation;
+                    if (son.localEulerAngles.z == 0f)
+                    {
+                        son.transform.rotation = Quaternion.Euler(son.localEulerAngles.x, son.localEulerAngles.y, son.localEulerAngles.z-105.735f);
+                        son.transform.position = new Vector2(son.transform.position.x - 0.807951f, son.transform.position.y - 0.5572395f);
+                    }
+            }
+            else
+            {
+                sr.flipX = true;
+            }
+
         }
 
 
@@ -79,12 +92,25 @@ public class PlayerM : MonoBehaviour
 
     private void lookLeft(GameObject player)
     {
+        this.lookright = false;
         for (int i = 0; i < player.transform.childCount; i++)
         {
             Transform son = player.transform.GetChild(i);
             SpriteRenderer sr = son.GetComponent<SpriteRenderer>();
-            sr.flipX = false;
-            
+            if (son.tag == "WeaponHolder")
+            {
+                Quaternion rotz = son.transform.rotation;
+                if (son.localEulerAngles.z != 0f)
+                {
+                    son.transform.rotation = Quaternion.Euler(son.localEulerAngles.x, son.localEulerAngles.y, 0);
+                    son.transform.position = new Vector2(son.transform.position.x + 0.807951f, son.transform.position.y + 0.5572395f);
+                }
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+
         }
 
     }
@@ -112,6 +138,17 @@ public class PlayerM : MonoBehaviour
     public void SetDead(bool val)
     {
         this.isdead = val;
+    }
+
+
+    public bool VerificarLimites()
+    {
+        return true;
+    }
+
+    public bool GetLR()
+    {
+        return this.lookright;
     }
 
 }
