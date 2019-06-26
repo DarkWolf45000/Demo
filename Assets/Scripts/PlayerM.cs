@@ -165,4 +165,9 @@ public class PlayerM : MonoBehaviour
         return this.lookright;
     }
 
+    public bool GetDead()
+    {
+        return this.isdead;
+    }
+
 }
