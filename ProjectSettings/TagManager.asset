@@ -11,6 +11,7 @@ TagManager:
   - Sword
   - Enemy
   - WeaponHolder
+  - DHolder
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,7 @@ public class Sword : MonoBehaviour
         if (playerGO.tag == "Main")
         {
             Debug.Log("Collisding with" + col.collider.gameObject.name);
-            this.activar(swordGO, playerGO, "WeaponHolder");
+            this.activar(swordGO, playerGO.transform.GetChild(0).gameObject, "WeaponHolder");
         }
        
 

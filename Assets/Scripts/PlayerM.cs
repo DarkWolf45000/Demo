@@ -8,7 +8,7 @@ public class PlayerM : MonoBehaviour
     public float speed=2.4f;
     private Transform pt;
     private int cantj = 0;
-    private Animator anim;
+    public Animator anim;
     private Vector3 vo;
     private bool isdead=false;
     private bool lookright = false;
@@ -23,7 +23,6 @@ public class PlayerM : MonoBehaviour
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         pt = this.gameObject.GetComponent<Transform>();
-        anim = this.gameObject.GetComponent<Animator>();
         vo = pt.position;
         //vo = new Vector3(-9.36f, -0.5803899f, -72.12029f);
        // Debug.Log(this.gameObject.tag);
@@ -35,10 +34,10 @@ public class PlayerM : MonoBehaviour
         Vector3 va = pt.position;
         if (Input.GetKey(KeyCode.D) && !isdead)
         {
-            this.lookRight(this.gameObject);
+            this.lookRight(this.gameObject.transform.GetChild(0).gameObject);
             Vector3 movement = new Vector3(speed, 0f, 0f);
             Vector3 temp = pt.position + movement * Time.deltaTime * speed;
-            if (!((temp.x+ +0.399f )> 12.386f))
+            if (!((temp.x )> 14.96f))
             {
                 pt.position += movement * Time.deltaTime * speed;
             }
@@ -48,10 +47,10 @@ public class PlayerM : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) && !isdead)
         {
-            this.lookLeft(this.gameObject);
+            this.lookLeft(this.gameObject.transform.GetChild(0).gameObject);
             Vector3 movement = new Vector3(-1 * speed, 0f, 0f);
             Vector3 temp = pt.position + movement * Time.deltaTime * speed;
-            if (!((temp.x-0.399f)<-11.13f))
+            if (!(temp.x<-7.69f))
             {
                 pt.position += movement * Time.deltaTime * speed;
             }
